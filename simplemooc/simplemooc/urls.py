@@ -16,9 +16,15 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('simplemooc.core.urls', namespace='core')),
+    url(r'^cursos/', include('simplemooc.courses.urls', namespace='courses')),
     # referencia ao arquivo urls.py da app Core / namespace nomeia a url de acordo com a app, para evitar conflito com outras apps
+    # no template: {% url 'core:home' %}
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
