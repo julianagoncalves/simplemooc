@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 from django.db import models
 
 
@@ -5,7 +7,7 @@ class CourseManager(models.Manager):
 
     def search(self, query):
         return self.get_queryset().filter(models.Q(name_icontains=query) | models.Q(description__icontains=query))
-        # Filtra dados pelo nome ou descrição
+        # filtra dados pelo nome ou descrição
 
 
 class Course(models.Model):
@@ -22,11 +24,11 @@ class Course(models.Model):
     def __str__(self):
         return self.name
 
-    # Representação de string dos objetos no formulário de Admin
+    # representação de string dos objetos no formulário de Admin
 
     class Meta:
         verbose_name = 'Curso'
         verbose_name_plural = 'Cursos'
         ordering = ['name']
 
-    # Renomeando dados da classe Course
+    # renomeando dados da classe Course
